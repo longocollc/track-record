@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Do Club Remixes Actually Hit Harder? — Track Record</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <div class="brand">
+      <h1>Track<span>Record</span></h1>
+      <nav class="site">
+        <a href="../index.html">Posts</a>
+        <a href="../about.html">About &amp; Methodology</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<article class="post wrap" style="max-width:760px;">
+  <div class="post-header">
+    <span class="badge">Streaming &amp; Charts</span>
+    <h1>Do Club Remixes Actually Hit Harder Than the Original?</h1>
+    <p class="post-meta">Post 01 · Track Record · Dataset: Spotify audio features (TidyTuesday, 2020)</p>
+  </div>
+
+  <p>You know the moment: a song you already like comes back six months later as a "Remix," suddenly louder, faster, more built for a dance floor. It <em>feels</em> more intense. But is that actually true, according to Spotify's own numbers — or is it just louder mixing and a new drop?</p>
+
+  <img class="post-hero-img" src="../assets/post01_remix_energy.png" alt="Slope chart comparing energy of original vs remix tracks, and a bar chart comparing averages">
+
+  <h2>The dataset</h2>
+  <p>This uses Spotify's audio-feature data (danceability, energy, tempo, valence, etc.) as published in the <a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-01-21/readme.md" target="_blank">TidyTuesday "Spotify Songs" dataset</a> (2020-01-21), originally pulled via the Spotify API and released under a public/CC0 license. The full dataset has 32,833 tracks.</p>
+  <p>For this post I worked from a 40-track sample pulled from three Spotify "Pop Remix," "Dance Pop," and "Dance Room" playlists — chosen specifically because several songs show up in <em>both</em> their original and remixed form, which is what makes a real comparison possible. You can download exactly what I used below, or grab the full dataset from the link above to run your own version.</p>
+
+  <div class="panel">
+    <h3>Downloads</h3>
+    <p style="margin:6px 0;">
+      <a href="../data/spotify_songs_sample.csv" download>spotify_songs_sample.csv</a> — the 40-track working sample<br>
+      <a href="../data/post01_matched_pairs.csv" download>post01_matched_pairs.csv</a> — the 7 matched original/remix pairs
+    </p>
+  </div>
+
+  <h2>The method</h2>
+  <p>Using Python (pandas + matplotlib):</p>
+  <ol>
+    <li>Flagged any track with "Remix" in its title.</li>
+    <li>Stripped remix suffixes to recover a "base title," then grouped by artist + base title to find songs with both an original and at least one remix in the sample.</li>
+    <li>Compared Spotify's <strong>energy</strong> score (0–1, how intense/fast a track feels) between each matched pair.</li>
+    <li>Charted the shift per song (slope chart) and the overall group averages across all 40 tracks.</li>
+  </ol>
+
+  <pre><code>df["is_remix"] = df["track_name"].str.contains("remix", case=False)
+
+def base_title(name):
+    name = re.sub(r"\s*-\s*.*remix.*", "", name, flags=re.IGNORECASE)
+    name = re.sub(r"\s*\[.*remix.*\]", "", name, flags=re.IGNORECASE)
+    return name.strip()
+
+df["base_title"] = df["track_name"].apply(base_title)
+# group by (artist, base_title) to find original/remix matches
+# then compare energy: remix_energy - orig_energy</code></pre>
+  <p>Full script: <code>scripts/post01_remix_energy.py</code> (included in the project files).</p>
+
+  <h2>What the matched pairs showed</h2>
+  <table class="data-table">
+    <tr><th>Song</th><th>Remix</th><th>Original energy</th><th>Remix energy</th><th>Change</th></tr>
+    <tr><td>Post Malone (feat. RANI) — Sam Feldt</td><td>GATTÜSO Remix</td><td>0.642</td><td>0.903</td><td>+0.261</td></tr>
+    <tr><td>Call You Mine — The Chainsmokers</td><td>Keanu Silva Remix</td><td>0.702</td><td>0.930</td><td>+0.228</td></tr>
+    <tr><td>Stay (Don't Go Away) — David Guetta</td><td>Mark Knight Remix</td><td>0.797</td><td>0.995</td><td>+0.198</td></tr>
+    <tr><td>Call You Mine — The Chainsmokers</td><td>Asketa &amp; Natan Chaim Remix</td><td>0.702</td><td>0.844</td><td>+0.142</td></tr>
+    <tr><td>Crash Into Me — Steve Aoki</td><td>Settle Down Steavis Aoki Remix</td><td>0.815</td><td>0.956</td><td>+0.141</td></tr>
+    <tr><td>Never Really Over — Katy Perry</td><td>R3HAB Remix</td><td>0.882</td><td>0.856</td><td>−0.026</td></tr>
+    <tr><td>With You — Kaskade</td><td>LöKii Remix</td><td>0.921</td><td>0.727</td><td>−0.194</td></tr>
+  </table>
+
+  <p>5 of the 7 matched pairs got a higher energy score in remix form — sometimes by a lot (Post Malone/Sam Feldt jumped +0.26). But two went the other way: Kaskade's "With You" is actually calmer as the LöKii remix than the original. Across the full 40-track sample, remixes averaged 0.840 energy vs. 0.763 for originals — a real but not universal bump.</p>
+
+  <div class="takeaway">
+    <strong>Takeaway:</strong> "Remix" leans toward more energy, but it's a trend, not a rule — about 1 in 4 matched remixes in this sample actually dialed things down. And with only 7 matched pairs, this is a fun signal, not a verdict — the full 32,833-track dataset would be the place to check if this holds at scale.
+  </div>
+
+  <p><a class="btn" href="../index.html">← Back to all posts</a></p>
+</article>
+
+<footer class="site">
+  <div class="wrap">
+    Track Record is an independent data project by Longo Co. LLC.
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "post_num": "03",
+  "slug": "dtmf-chart-record",
+  "tag": "Streaming & Charts",
+  "title": "Bad Bunny's \"DTMF\" Broke a Chart Record 8 Years in the Making",
+  "hook": "One of the artists in Longo's DONY playlist, Bad Bunny, just set the longest-running #1 in the 30+ year history of Billboard's Hot Latin Songs chart. To see how big a deal that actually is, we lined it up against the reigns it beat.",
+  "img_file": "post03_dtmf_record.png",
+  "img_alt": "Horizontal bar chart ranking the longest-reigning number-one songs on Billboard's Hot Latin Songs chart, led by Bad Bunny's DTMF at 61 weeks",
+  "dataset_name": "Billboard Hot Latin Songs chart history",
+  "dataset_desc": "Weeks-at-#1 figures for each song were verified via Guinness World Records' official record listing and Billboard's own chart reporting (linked below). This covers the small set of songs that have held the record for longest #1 reign at some point in the chart's history — it is not every #1 song ever, just the record-holders.",
+  "dataset_links": [
+    {"file": "data/post03_longest_reigning_latin_number_ones.csv", "label": "post03_longest_reigning_latin_number_ones.csv"}
+  ],
+  "method_steps": [
+    "Identified the songs that have held the \"longest-reigning #1\" record on Hot Latin Songs at some point since the chart's 1986 debut.",
+    "Recorded each song's peak weeks-at-#1, artist, and year.",
+    "Sorted and charted them by weeks at #1, highlighting DTMF as the current record-holder."
+  ],
+  "code": "data.sort(key=lambda row: row[\"weeks_at_number_one\"])\n# horizontal bar chart, one bar per song, length = weeks at #1\n# DTMF bar colored differently to flag the current record",
+  "findings": [
+    "<table class=\"data-table\"><tr><th>Song</th><th>Artist</th><th>Year</th><th>Weeks at #1</th></tr><tr><td>DTMF</td><td>Bad Bunny</td><td>2025</td><td>61</td></tr><tr><td>Despacito</td><td>Luis Fonsi & Daddy Yankee ft. Justin Bieber</td><td>2017</td><td>56</td></tr><tr><td>Bailando</td><td>Enrique Iglesias ft. Descemer Bueno & Gente de Zona</td><td>2014</td><td>41</td></tr><tr><td>El Perdón</td><td>Nicky Jam & Enrique Iglesias</td><td>2015</td><td>30</td></tr><tr><td>La Tortura</td><td>Shakira ft. Alejandro Sanz</td><td>2005</td><td>25</td></tr><tr><td>Ginza</td><td>J Balvin</td><td>2015</td><td>22</td></tr></table>",
+    "DTMF's 61 weeks beat \"Despacito\" (56 weeks, 2017) by 5 weeks — and \"Despacito\" itself had held the record for 8 years. Before that, the record climbed more gradually: Enrique Iglesias's \"Bailando\" (41 weeks, 2014), Nicky Jam & Enrique Iglesias's \"El Perdón\" (30 weeks), Shakira's \"La Tortura\" (25 weeks, 2005), and J Balvin's \"Ginza\" (22 weeks) each held the title at some point going back to the 2000s."
+  ],
+  "takeaway": "The record didn't just get broken — it got broken by a wide margin, and by a song that stayed on top for over a year straight. That said, \"weeks at #1\" measures chart longevity, not the same thing as a song's raw popularity peak or global streaming numbers, and Hot Latin Songs methodology has changed over the decades (streaming weight, radio panels, etc.), so comparing eras like this is illustrative, not perfectly apples-to-apples.",
+  "card_summary": "Bad Bunny's DTMF just broke a Hot Latin Songs chart record that stood since 2017 — see it against the records it beat."
+}

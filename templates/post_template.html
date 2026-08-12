@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}} — Track Record</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <div class="brand">
+      <h1>Track<span>Record</span></h1>
+      <nav class="site">
+        <a href="../index.html">Posts</a>
+        <a href="../about.html">About &amp; Methodology</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<article class="post wrap" style="max-width:760px;">
+  <div class="post-header">
+    <span class="badge">{{TAG}}</span>
+    <h1>{{TITLE}}</h1>
+    <p class="post-meta">Post {{POST_NUM}} · Track Record · Dataset: {{DATASET_NAME}}</p>
+  </div>
+
+  <p>{{HOOK}}</p>
+
+  <img class="post-hero-img" src="../assets/{{IMG_FILE}}" alt="{{IMG_ALT}}">
+
+  <h2>The dataset</h2>
+  <p>{{DATASET_DESC}}</p>
+
+  <div class="panel">
+    <h3>Downloads</h3>
+    <p style="margin:6px 0;">{{DATASET_LINKS}}</p>
+  </div>
+
+  <h2>The method</h2>
+  {{METHOD_STEPS}}
+
+  <pre><code>{{CODE}}</code></pre>
+
+  <h2>What it showed</h2>
+  {{FINDINGS}}
+
+  <div class="takeaway">
+    <strong>Takeaway:</strong> {{TAKEAWAY}}
+  </div>
+
+  <p><a class="btn" href="../index.html">← Back to all posts</a></p>
+</article>
+
+<footer class="site">
+  <div class="wrap">
+    Track Record is an independent data project by Longo Co. LLC.
+  </div>
+</footer>
+
+</body>
+</html>

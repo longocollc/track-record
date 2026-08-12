@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bad Bunny's "DTMF" Broke a Chart Record 8 Years in the Making — Track Record</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <div class="brand">
+      <h1>Track<span>Record</span></h1>
+      <nav class="site">
+        <a href="../index.html">Posts</a>
+        <a href="../about.html">About &amp; Methodology</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<article class="post wrap" style="max-width:760px;">
+  <div class="post-header">
+    <span class="badge">Streaming & Charts</span>
+    <h1>Bad Bunny's "DTMF" Broke a Chart Record 8 Years in the Making</h1>
+    <p class="post-meta">Post 03 · Track Record · Dataset: Billboard Hot Latin Songs chart history</p>
+  </div>
+
+  <p>One of the artists in Longo's DONY playlist, Bad Bunny, just set the longest-running #1 in the 30+ year history of Billboard's Hot Latin Songs chart. To see how big a deal that actually is, we lined it up against the reigns it beat.</p>
+
+  <img class="post-hero-img" src="../assets/post03_dtmf_record.png" alt="Horizontal bar chart ranking the longest-reigning number-one songs on Billboard's Hot Latin Songs chart, led by Bad Bunny's DTMF at 61 weeks">
+
+  <h2>The dataset</h2>
+  <p>Weeks-at-#1 figures for each song were verified via Guinness World Records' official record listing and Billboard's own chart reporting (linked below). This covers the small set of songs that have held the record for longest #1 reign at some point in the chart's history — it is not every #1 song ever, just the record-holders.</p>
+
+  <div class="panel">
+    <h3>Downloads</h3>
+    <p style="margin:6px 0;"><a href="../data/post03_longest_reigning_latin_number_ones.csv" download>post03_longest_reigning_latin_number_ones.csv</a></p>
+  </div>
+
+  <h2>The method</h2>
+  <ol>
+    <li>Identified the songs that have held the "longest-reigning #1" record on Hot Latin Songs at some point since the chart's 1986 debut.</li>
+    <li>Recorded each song's peak weeks-at-#1, artist, and year.</li>
+    <li>Sorted and charted them by weeks at #1, highlighting DTMF as the current record-holder.</li>
+  </ol>
+
+  <pre><code>data.sort(key=lambda row: row["weeks_at_number_one"])
+# horizontal bar chart, one bar per song, length = weeks at #1
+# DTMF bar colored differently to flag the current record</code></pre>
+
+  <h2>What it showed</h2>
+  <table class="data-table"><tr><th>Song</th><th>Artist</th><th>Year</th><th>Weeks at #1</th></tr><tr><td>DTMF</td><td>Bad Bunny</td><td>2025</td><td>61</td></tr><tr><td>Despacito</td><td>Luis Fonsi & Daddy Yankee ft. Justin Bieber</td><td>2017</td><td>56</td></tr><tr><td>Bailando</td><td>Enrique Iglesias ft. Descemer Bueno & Gente de Zona</td><td>2014</td><td>41</td></tr><tr><td>El Perdón</td><td>Nicky Jam & Enrique Iglesias</td><td>2015</td><td>30</td></tr><tr><td>La Tortura</td><td>Shakira ft. Alejandro Sanz</td><td>2005</td><td>25</td></tr><tr><td>Ginza</td><td>J Balvin</td><td>2015</td><td>22</td></tr></table>
+  <p>DTMF's 61 weeks beat "Despacito" (56 weeks, 2017) by 5 weeks — and "Despacito" itself had held the record for 8 years. Before that, the record climbed more gradually: Enrique Iglesias's "Bailando" (41 weeks, 2014), Nicky Jam & Enrique Iglesias's "El Perdón" (30 weeks), Shakira's "La Tortura" (25 weeks, 2005), and J Balvin's "Ginza" (22 weeks) each held the title at some point going back to the 2000s.</p>
+
+  <div class="takeaway">
+    <strong>Takeaway:</strong> The record didn't just get broken — it got broken by a wide margin, and by a song that stayed on top for over a year straight. That said, "weeks at #1" measures chart longevity, not the same thing as a song's raw popularity peak or global streaming numbers, and Hot Latin Songs methodology has changed over the decades (streaming weight, radio panels, etc.), so comparing eras like this is illustrative, not perfectly apples-to-apples.
+  </div>
+
+  <p><a class="btn" href="../index.html">← Back to all posts</a></p>
+</article>
+
+<footer class="site">
+  <div class="wrap">
+    Track Record is an independent data project by Longo Co. LLC.
+  </div>
+</footer>
+
+</body>
+</html>
