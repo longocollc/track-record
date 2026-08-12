@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bad Bunny's "DTMF" Broke a Chart Record 8 Years in the Making — Track Record</title>
+<title>DTMF Broke the Record — But Enrique Iglesias Needed 27 Songs to Build His — Track Record</title>
 <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
@@ -23,39 +23,44 @@
 <article class="post wrap" style="max-width:760px;">
   <div class="post-header">
     <span class="badge">Streaming & Charts</span>
-    <h1>Bad Bunny's "DTMF" Broke a Chart Record 8 Years in the Making</h1>
+    <h1>DTMF Broke the Record — But Enrique Iglesias Needed 27 Songs to Build His</h1>
     <p class="post-meta">Post 03 · Track Record · Dataset: Billboard Hot Latin Songs chart history</p>
   </div>
 
-  <p>Bad Bunny, just set the longest-running #1 in the 30+ year history of Billboard's Hot Latin Songs chart. To see how big a deal that actually is, we lined it up against the reigns it beat.</p>
+  <p>Bad Bunny's "DTMF" just spent 71 weeks (and counting, as of early August 2026) at #1 on Billboard's Hot Latin Songs chart — more than any single song has ever managed in the chart's 40-year history. But the all-time record for total time at #1 across an entire career still belongs to someone else: Enrique Iglesias, who got there the slow way, one hit at a time. We charted every song in both records.</p>
 
-  <img class="post-hero-img" src="../assets/post03_dtmf_record.png" alt="Horizontal bar chart ranking the longest-reigning number-one songs on Billboard's Hot Latin Songs chart, led by Bad Bunny's DTMF at 61 weeks">
+  <img class="post-hero-img" src="../assets/post03_dtmf_record.png" alt="Two charts: the top shows the record for longest-reigning single song at #1, led by DTMF at 71 weeks; the bottom shows all 27 of Enrique Iglesias's #1 hits, which sum to 189 weeks combined">
 
   <h2>The dataset</h2>
-  <p>Weeks-at-#1 figures for each song were verified via Guinness World Records' official record listing and Billboard's own chart reporting (linked below). This covers the small set of songs that have held the record for longest #1 reign at some point in the chart's history — it is not every #1 song ever, just the record-holders.</p>
+  <p>Two datasets here. First, the "single song" record-progression: the handful of songs that have each held the record for longest #1 reign on Hot Latin Songs at some point since 1986, verified via Billboard's own chart-beat reporting. Second, a much bigger one: all 27 of Enrique Iglesias's #1 hits on the chart, individually, sourced from Wikipedia's "List of Billboard Hot Latin Songs chart achievements and milestones." As a sanity check, we summed all 27 songs' individual week counts and got exactly 189 — matching Wikipedia's independently-stated career total for Iglesias, who is still the all-time leader in cumulative weeks at #1. That match gave us confidence the per-song figures are accurate.</p>
+  <p>One honest caveat: we also tried to reconstruct Bad Bunny's full catalog of 17 #1 hits the same way, but our reconstructed total didn't match verified reporting (which confirms Iglesias still holds the cumulative record) — so we're only charting his DTMF figure here, not a full per-song breakdown, rather than publish numbers we couldn't verify.</p>
 
   <div class="panel">
     <h3>Downloads</h3>
-    <p style="margin:6px 0;"><a href="../data/post03_longest_reigning_latin_number_ones.csv" download>post03_longest_reigning_latin_number_ones.csv</a></p>
+    <p style="margin:6px 0;">
+      <a href="../data/post03_longest_reigning_latin_number_ones.csv" download>post03_longest_reigning_latin_number_ones.csv</a> — the 6-song record progression<br>
+      <a href="../data/post03_enrique_iglesias_number_ones.csv" download>post03_enrique_iglesias_number_ones.csv</a> — all 27 of Enrique Iglesias's #1 hits
+    </p>
   </div>
 
   <h2>The method</h2>
   <ol>
-    <li>Identified the songs that have held the "longest-reigning #1" record on Hot Latin Songs at some point since the chart's 1986 debut.</li>
-    <li>Recorded each song's peak weeks-at-#1, artist, and year.</li>
-    <li>Sorted and charted them by weeks at #1, highlighting DTMF as the current record-holder.</li>
+    <li>Identified the songs that have held the "longest-reigning #1" record on Hot Latin Songs at some point since the chart's 1986 debut, and recorded each one's peak weeks-at-#1.</li>
+    <li>Separately, pulled every one of Enrique Iglesias's 27 #1 hits and their individual weeks-at-#1 totals.</li>
+    <li>Cross-checked the 27-song list by summing it and comparing to Iglesias's independently-reported career total (189 weeks) — it matched exactly.</li>
+    <li>Charted both: a small record-progression chart on top, and the full 27-song catalog below it.</li>
   </ol>
 
-  <pre><code>data.sort(key=lambda row: row["weeks_at_number_one"])
-# horizontal bar chart, one bar per song, length = weeks at #1
-# DTMF bar colored differently to flag the current record</code></pre>
+  <pre><code>catalog = pd.read_csv("post03_enrique_iglesias_number_ones.csv")
+assert catalog["weeks_at_number_one"].sum() == 189  # matches Iglesias's reported career total
+catalog.sort_values("weeks_at_number_one").plot.barh(x="song", y="weeks_at_number_one")</code></pre>
 
   <h2>What it showed</h2>
-  <table class="data-table"><tr><th>Song</th><th>Artist</th><th>Year</th><th>Weeks at #1</th></tr><tr><td>DTMF</td><td>Bad Bunny</td><td>2025</td><td>61</td></tr><tr><td>Despacito</td><td>Luis Fonsi & Daddy Yankee ft. Justin Bieber</td><td>2017</td><td>56</td></tr><tr><td>Bailando</td><td>Enrique Iglesias ft. Descemer Bueno & Gente de Zona</td><td>2014</td><td>41</td></tr><tr><td>El Perdón</td><td>Nicky Jam & Enrique Iglesias</td><td>2015</td><td>30</td></tr><tr><td>La Tortura</td><td>Shakira ft. Alejandro Sanz</td><td>2005</td><td>25</td></tr><tr><td>Ginza</td><td>J Balvin</td><td>2015</td><td>22</td></tr></table>
-  <p>DTMF's 61 weeks beat "Despacito" (56 weeks, 2017) by 5 weeks — and "Despacito" itself had held the record for 8 years. Before that, the record climbed more gradually: Enrique Iglesias's "Bailando" (41 weeks, 2014), Nicky Jam & Enrique Iglesias's "El Perdón" (30 weeks), Shakira's "La Tortura" (25 weeks, 2005), and J Balvin's "Ginza" (22 weeks) each held the title at some point going back to the 2000s.</p>
+  <table class="data-table"><tr><th>Song</th><th>Artist</th><th>Year</th><th>Weeks at #1</th></tr><tr><td>DTMF</td><td>Bad Bunny</td><td>2025</td><td>71 (ongoing)</td></tr><tr><td>Despacito</td><td>Luis Fonsi & Daddy Yankee ft. Justin Bieber</td><td>2017</td><td>56</td></tr><tr><td>Bailando</td><td>Enrique Iglesias ft. Descemer Bueno & Gente de Zona</td><td>2014</td><td>41</td></tr><tr><td>El Perdón</td><td>Nicky Jam & Enrique Iglesias</td><td>2015</td><td>30</td></tr><tr><td>La Tortura</td><td>Shakira ft. Alejandro Sanz</td><td>2005</td><td>25</td></tr><tr><td>Ginza</td><td>J Balvin</td><td>2015</td><td>22</td></tr></table>
+  <p>DTMF has now out-run Despacito's former 56-week record by 15 weeks, and it's still running — up from 66 weeks back in February 2026. But zoom out to a full career and Iglesias still leads by a wide margin: his 27 #1 hits (topped by "Bailando" at 41 weeks, then "El Perdón" at 30) add up to 189 combined weeks at #1, more than DTMF's single-song record even if you don't count anything else Bad Bunny has ever released. Most of Iglesias's hits didn't linger anywhere near that long individually — 10 of his 27 #1s spent just a single week at the top, and the bulk of his 189 weeks comes from a handful of longer-running hits.</p>
 
   <div class="takeaway">
-    <strong>Takeaway:</strong> The record didn't just get broken — it got broken by a wide margin, and by a song that stayed on top for over a year straight. That said, "weeks at #1" measures chart longevity, not the same thing as a song's raw popularity peak or global streaming numbers, and Hot Latin Songs methodology has changed over the decades (streaming weight, radio panels, etc.), so comparing eras like this is illustrative, not perfectly apples-to-apples.
+    <strong>Takeaway:</strong> These are two different kinds of records — one song's longest reign vs. a whole career's cumulative time at #1 — and they measure different things. Bad Bunny (17 #1 hits) hasn't caught Iglesias's career total yet, even with DTMF's historic run, though the gap is one to watch given DTMF is still adding weeks. As always: chart methodology has shifted over the decades (streaming weight, radio panels, etc.), so comparing eras is illustrative, not perfectly apples-to-apples.
   </div>
 
   <p><a class="btn" href="../index.html">← Back to all posts</a></p>
