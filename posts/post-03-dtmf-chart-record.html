@@ -33,15 +33,7 @@
 
   <h2>The dataset</h2>
   <p>Two datasets here. First, the "single song" record-progression: the handful of songs that have each held the record for longest #1 reign on Hot Latin Songs at some point since 1986, verified via Billboard's own chart-beat reporting. Second, a much bigger one: all 27 of Enrique Iglesias's #1 hits on the chart, individually, sourced from Wikipedia's "List of Billboard Hot Latin Songs chart achievements and milestones." As a sanity check, we summed all 27 songs' individual week counts and got exactly 189 — matching Wikipedia's independently-stated career total for Iglesias, who is still the all-time leader in cumulative weeks at #1. That match gave us confidence the per-song figures are accurate.</p>
-  <p>One honest caveat: we also tried to reconstruct Bad Bunny's full catalog of 17 #1 hits the same way, but our reconstructed total didn't match verified reporting (which confirms Iglesias still holds the cumulative record) — so we're only charting his DTMF figure here, not a full per-song breakdown, rather than publish numbers we couldn't verify.</p>
-
-  <div class="panel">
-    <h3>Downloads</h3>
-    <p style="margin:6px 0;">
-      <a href="../data/post03_longest_reigning_latin_number_ones.csv" download>post03_longest_reigning_latin_number_ones.csv</a> — the 6-song record progression<br>
-      <a href="../data/post03_enrique_iglesias_number_ones.csv" download>post03_enrique_iglesias_number_ones.csv</a> — all 27 of Enrique Iglesias's #1 hits
-    </p>
-  </div>
+  <p>One honest caveat: we also tried to reconstruct Bad Bunny's full catalog of 17 #1 hits the same way, but our reconstructed total didn't match verified reporting (which confirms Iglesias still holds the cumulative record) — so we're only charting his DTMF figure here, not a full per-song breakdown, rather than publish numbers we couldn't verify. Full data and code for this post are in the <a href="https://github.com/longocollc/track-record" target="_blank">Track Record GitHub repo</a>.</p>
 
   <h2>The method</h2>
   <ol>
@@ -50,10 +42,6 @@
     <li>Cross-checked the 27-song list by summing it and comparing to Iglesias's independently-reported career total (189 weeks) — it matched exactly.</li>
     <li>Charted both: a small record-progression chart on top, and the full 27-song catalog below it.</li>
   </ol>
-
-  <pre><code>catalog = pd.read_csv("post03_enrique_iglesias_number_ones.csv")
-assert catalog["weeks_at_number_one"].sum() == 189  # matches Iglesias's reported career total
-catalog.sort_values("weeks_at_number_one").plot.barh(x="song", y="weeks_at_number_one")</code></pre>
 
   <h2>What it showed</h2>
   <table class="data-table"><tr><th>Song</th><th>Artist</th><th>Year</th><th>Weeks at #1</th></tr><tr><td>DTMF</td><td>Bad Bunny</td><td>2025</td><td>71 (ongoing)</td></tr><tr><td>Despacito</td><td>Luis Fonsi & Daddy Yankee ft. Justin Bieber</td><td>2017</td><td>56</td></tr><tr><td>Bailando</td><td>Enrique Iglesias ft. Descemer Bueno & Gente de Zona</td><td>2014</td><td>41</td></tr><tr><td>El Perdón</td><td>Nicky Jam & Enrique Iglesias</td><td>2015</td><td>30</td></tr><tr><td>La Tortura</td><td>Shakira ft. Alejandro Sanz</td><td>2005</td><td>25</td></tr><tr><td>Ginza</td><td>J Balvin</td><td>2015</td><td>22</td></tr></table>

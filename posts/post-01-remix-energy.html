@@ -33,15 +33,7 @@
 
   <h2>The dataset</h2>
   <p>This uses Spotify's audio-feature data (danceability, energy, tempo, valence, etc.) as published in the <a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-01-21/readme.md" target="_blank">TidyTuesday "Spotify Songs" dataset</a> (2020-01-21), originally pulled via the Spotify API and released under a public/CC0 license. The full dataset has 32,833 tracks.</p>
-  <p>For this post I worked from a 40-track sample pulled from three Spotify "Pop Remix," "Dance Pop," and "Dance Room" playlists — chosen specifically because several songs show up in <em>both</em> their original and remixed form, which is what makes a real comparison possible. You can download exactly what I used below, or grab the full dataset from the link above to run your own version.</p>
-
-  <div class="panel">
-    <h3>Downloads</h3>
-    <p style="margin:6px 0;">
-      <a href="../data/spotify_songs_sample.csv" download>spotify_songs_sample.csv</a> — the 40-track working sample<br>
-      <a href="../data/post01_matched_pairs.csv" download>post01_matched_pairs.csv</a> — the 7 matched original/remix pairs
-    </p>
-  </div>
+  <p>For this post I worked from a 40-track sample pulled from three Spotify "Pop Remix," "Dance Pop," and "Dance Room" playlists — chosen specifically because several songs show up in <em>both</em> their original and remixed form, which is what makes a real comparison possible. The full working data and code for this post are in the <a href="https://github.com/longocollc/track-record" target="_blank">Track Record GitHub repo</a>, or grab the full 32,833-track dataset from the link above to run your own version.</p>
 
   <h2>The method</h2>
   <p>Using Python (pandas + matplotlib):</p>
@@ -51,18 +43,6 @@
     <li>Compared Spotify's <strong>energy</strong> score (0–1, how intense/fast a track feels) between each matched pair.</li>
     <li>Charted the shift per song (slope chart) and the overall group averages across all 40 tracks.</li>
   </ol>
-
-  <pre><code>df["is_remix"] = df["track_name"].str.contains("remix", case=False)
-
-def base_title(name):
-    name = re.sub(r"\s*-\s*.*remix.*", "", name, flags=re.IGNORECASE)
-    name = re.sub(r"\s*\[.*remix.*\]", "", name, flags=re.IGNORECASE)
-    return name.strip()
-
-df["base_title"] = df["track_name"].apply(base_title)
-# group by (artist, base_title) to find original/remix matches
-# then compare energy: remix_energy - orig_energy</code></pre>
-  <p>Full script: <code>scripts/post01_remix_energy.py</code> (included in the project files).</p>
 
   <h2>What the matched pairs showed</h2>
   <table class="data-table">
