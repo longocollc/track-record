@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Billion-Dollar Climb: How Touring's #1 Tour Grew 11x Since 1987 — Track Record</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <div class="brand">
+      <h1>Track<span>Record</span></h1>
+      <nav class="site">
+        <a href="../index.html">Posts</a>
+        <a href="../about.html">About &amp; Methodology</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<article class="post wrap" style="max-width:760px;">
+  <div class="post-header">
+    <span class="badge">Industry &amp; Money</span>
+    <h1>The Billion-Dollar Climb: How Touring's #1 Tour Grew 11x Since 1987</h1>
+    <p class="post-meta">Post 04 · Track Record · Dataset: Highest-grossing tour of the year, 1987&ndash;2023 (37 years)</p>
+  </div>
+
+  <p>Taylor Swift's Eras Tour made more money in 2023 alone, adjusted for inflation, than every single year's biggest tour combined from 1987 through 1993 — seven years of touring history in one. And she's still not the act that's won this title the most times.</p>
+
+  <img class="post-hero-img" src="../assets/post04_touring_climb.png" alt="Three charts: the year's #1 concert tour adjusted for inflation from 1987 to 2023, average gross per show by decade, and which artists topped the annual chart most often">
+
+  <h2>The dataset</h2>
+  <p>37 rows, one per calendar year, 1987&ndash;2023 &mdash; every year Wikipedia's "List of highest-grossing concert tours" records a single highest-grossing tour of the year, itself sourced to <em>Billboard</em> Boxscore and Pollstar. Each row includes the artist, tour name, actual (nominal) gross, gross adjusted to 2025 dollars, number of shows, and average gross per show.</p>
+  <p>Two honest caveats: Wikipedia's table has no 1995 row, so we filled that gap independently (the Eagles' <em>Hell Freezes Over</em> Tour, per Pollstar via contemporaneous <em>Seattle Times</em> coverage) &mdash; its inflation-adjusted figure is our own estimate, interpolated from the neighboring years' ratios, not an official number. And for 10 of the 37 years, the source table's artist/tour cell didn't extract cleanly (likely due to small artist photos in those cells); we filled those from the gross/show numbers Wikipedia did give, plus independent web searches, each cross-referenced to a named source. Full data, source notes per row, and the analysis code are in the <a href="https://github.com/longocollc/track-record" target="_blank">Track Record GitHub repo</a>.</p>
+
+  <h2>The method</h2>
+  <ol>
+    <li>Pulled the 37-year "year's #1 tour" table from Wikipedia and cleaned up the artist/tour names.</li>
+    <li>Charted the inflation-adjusted trend across four decades, then grouped by decade to see how average gross per show has changed.</li>
+    <li>Counted how many times each act has topped the annual chart, then cross-checked that count against a fact stated independently elsewhere on the same Wikipedia page.</li>
+  </ol>
+  <p>The cross-check: Wikipedia's own prose states, separately from the table we used, that "The Rolling Stones and U2 have mounted the highest-grossing tour of the year eight times each, more than any other act." Our own count from the 1987&ndash;2023 table gives U2 exactly 8 &mdash; a match. The Rolling Stones come out to 7 in our window, one short of 8; the same Wikipedia page separately lists their 1981 <em>American Tour</em> among that decade's top-grossing tours, the likely source of their 8th year, though we didn't find an explicit "1981 tour of the year" confirmation to fully close that gap. U2's exact match is the strongest confidence signal here.</p>
+
+  <h2>What it showed</h2>
+  <p><strong>The trend.</strong> The inflation-adjusted gross of the year's #1 tour climbed from $99.5M (U2, 1987) to $1.098B (Taylor Swift's Eras Tour, 2023 alone) &mdash; an 11.0x increase, or about 6.9% compound annual growth. The climb wasn't smooth: it's punctuated by Rolling Stones/U2 mega-tours in the mid-2000s, a pandemic-driven collapse in 2020&ndash;2021, and then a near-vertical jump once the post-pandemic touring boom and stadium-scale pop tours arrived.</p>
+  <p><strong>Per-show economics.</strong> Average gross per show for the year's #1 tour rose from about $1.0M in the 1980s to $8.6M in the 2020s (nominal dollars) &mdash; roughly a 9x jump. That 2020s figure leans on only 4 years of data and is skewed upward by Eras Tour's outsized $17.3M/show; excluding 2023, the 2020&ndash;2022 average is a more modest $5.8M (and that includes the pandemic-shortened 2020 and 2021 runs).</p>
+  <p><strong>The repeat champions.</strong> U2 topped the annual chart 8 times (1987, 1992, 1997, 2001, 2005, 2009, 2011, 2017) and the Rolling Stones did it 7 times in our window (an 8th, in 1981, predates it). Madonna is a distant third with 3. Everyone else &mdash; including Taylor Swift, despite owning the single biggest year on record &mdash; has done it twice or fewer. Longevity has historically mattered more than any single blockbuster year.</p>
+
+  <div class="takeaway">
+    <strong>Takeaway:</strong> Touring's biggest prize has gotten dramatically bigger and more concentrated in fewer, more expensive shows &mdash; but the acts who've held the title most often got there through decades of repeat trips to the top, not one giant year. This dataset covers only the single highest-grossing tour of each year, not the full touring market, and it leans on one self-computed estimate (1995's inflation adjustment) and 10 artist/tour names we had to reconstruct and independently verify rather than read straight off the source table &mdash; a careful reconstruction of Wikipedia's own data, not a primary-source dataset.
+  </div>
+
+  <p><a class="btn" href="../index.html">← Back to all posts</a></p>
+</article>
+
+<footer class="site">
+  <div class="wrap">
+    Track Record is an independent data project by Longo Co. LLC.
+  </div>
+</footer>
+
+</body>
+</html>
