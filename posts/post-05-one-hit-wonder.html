@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How Rare Is a One-Hit Wonder, Really? — Track Record</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <div class="brand">
+      <h1>Track<span>Record</span></h1>
+      <nav class="site">
+        <a href="../index.html">Posts</a>
+        <a href="../about.html">About &amp; Methodology</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<article class="post wrap" style="max-width:760px;">
+  <div class="post-header">
+    <span class="badge">Music History &amp; Legacy</span>
+    <h1>How Rare Is a One-Hit Wonder, Really?</h1>
+    <p class="post-meta">Post 05 · Track Record · Dataset: playback.fm one-hit-wonder archives, 1970–2019 (1,525 songs)</p>
+  </div>
+
+  <p>Across five decades — 1970 through 2019 — 1,525 songs earned the "one-hit wonder" label, an average of about one every ten days. Only five of them ever reached #1, and most didn't even crack the top half of the Hot 100.</p>
+
+  <img class="post-hero-img" src="../assets/post05_one_hit_wonders.png" alt="Two-panel chart: one-hit wonders crowned per year 1970-2019 with a 1980-85 gap noted, and the distribution of where their one hit peaked on the Billboard Hot 100">
+
+  <h2>The dataset</h2>
+  <p>Data comes from <a href="https://playback.fm/one-hit-wonders-1970s" target="_blank">playback.fm's decade-by-decade one-hit-wonder pages</a> (one page per decade, 1970s through 2010s), each listing artist, song, genre, and Billboard Hot 100 peak position for songs it classifies as one-hit wonders.</p>
+  <p>1,525 songs across 44 of the 50 years from 1970–2019 — every year except 1980–85, which the source page wouldn't load in full despite repeated attempts; that six-year gap is excluded from every count rather than estimated. playback.fm's own "hit" standard runs looser than the familiar Top 40 threshold, with peak positions in this dataset extending down to #100 — worth keeping in mind when reading the peak-position breakdown below. Full data and the analysis code are in the <a href="https://github.com/longocollc/track-record" target="_blank">Track Record GitHub repo</a></p>
+
+  <h2>The method</h2>
+  <ol>
+    <li>Fetched each decade's playback.fm page and parsed the song / artist / peak-position / genre blocks into rows.</li>
+    <li>Validated each decade's row count against the page's own stated total before trusting it (the 1990s matched exactly: 421 of 421, zero parsing failures).</li>
+    <li>Combined all five decades into one dataset, then counted one-hit wonders per year and grouped their peak positions into five buckets: #1, Top 10, 11–20, 21–40, and 41–100.</li>
+  </ol>
+
+  <h2>What it showed</h2>
+  <p><strong>The crowning rate held steady.</strong> Every decade we have full data for averaged 31–42 new one-hit wonders a year — there's no long stretch where the phenomenon actually got rare. The 1990s ran hottest at 42.1 a year, peaking at 56 in 1990 alone; the 1970s and 2000s ran closer to 31–33 a year. Even the partial 1980s data (1986–89 only) sits in the same range, 34.8/yr.</p>
+<table class="data-table"><tr><th>Peak position</th><th>Songs</th><th>Share</th></tr><tr><td>#1</td><td>5</td><td>0.3%</td></tr><tr><td>Top 10 (#2–10)</td><td>53</td><td>3.5%</td></tr><tr><td>#11–20</td><td>77</td><td>5.0%</td></tr><tr><td>#21–40</td><td>228</td><td>15.0%</td></tr><tr><td>#41–100</td><td>1,162</td><td>76.2%</td></tr></table>
+<p>Only five songs in the whole dataset ever reached #1: Carl Douglas's "Kung Fu Fighting" (1974), Billy Swan's "I Can Help" (1975), Los del Río's "Macarena" (1996), Gotye's "Somebody That I Used to Know" (2012), and MAGIC!'s "Rude" (2014). More than three in four peaked somewhere in the Hot 100's bottom half (#41–100) — this source's "hit" threshold runs much looser than the familiar Top 40 standard, so treat that 76% figure as "charted once, however briefly" rather than "had a real hit."</p>
+<p><strong>Genre split.</strong> Pop (679) and Rock (386) together account for about 70% of all one-hit wonders across the five decades, with R&amp;B (339) a steady third and Country (121) a smaller but consistent presence.</p>
+
+  <div class="takeaway">
+    <strong>Takeaway:</strong> Getting labeled a "one-hit wonder" has never required much. Over 44 tracked years, an average of 35 new artists a year picked up the title, and the vast majority did it without ever getting near the Top 10 — let alone #1. Two honest caveats: six years (1980–85) are missing from this dataset entirely rather than estimated, and the source's "hit" threshold extends all the way down to #100 on the Hot 100, looser than the more familiar Top 40 standard — worth keeping in mind before repeating the 76% figure.
+  </div>
+
+  <p><a class="btn" href="../index.html">← Back to all posts</a></p>
+</article>
+
+<footer class="site">
+  <div class="wrap">
+    <p style="margin: 0; padding-bottom: 10px;">
+      Track Record is an independent data project by Longo Co. LLC. Full datasets and code for every post are public on <a href="https://github.com/longocollc/track-record" target="_blank">GitHub</a> — check our work.
+    </p>
+    <p style="margin: 0; font-size: 0.9em;">
+      <a href="../privacy.html" style="color: inherit; text-decoration: underline;">Privacy Policy</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
