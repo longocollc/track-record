@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Slow Death of Chart Turnover: Why No. 1 Hits Stick Around So Much Longer Than They Used To — Track Record</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <div class="brand">
+      <h1>Track<span>Record</span></h1>
+      <nav class="site">
+        <a href="../index.html">Posts</a>
+        <a href="../about.html">About &amp; Methodology</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<article class="post wrap" style="max-width:760px;">
+  <div class="post-header">
+    <span class="badge">Music History &amp; Legacy</span>
+    <h1>The Slow Death of Chart Turnover: Why No. 1 Hits Stick Around So Much Longer Than They Used To</h1>
+    <p class="post-meta">Post 06 · Track Record · Dataset: Wikipedia Billboard Hot 100 number-one lists, 1958–2026 (1,201 reigns)</p>
+  </div>
+
+  <p>In the 1970s, a fresh song hit No. 1 on the Billboard Hot 100 roughly every two weeks, like clockwork — 25.3 different songs topped the chart in an average year. In the 2010s that dropped to 11.6 new No. 1s a year, less than half the churn. And of the ten longest-running No. 1 reigns in the Hot 100's 68-year history, seven happened in the last twelve years.</p>
+
+  <img class="post-hero-img" src="../assets/post06_chart_turnover.png" alt="Five-panel chart showing Billboard Hot 100 number-one turnover declining then partially rebounding from 1958 to 2026, reign-length composition by decade, every individual reign as a scatter plot, and the ten longest number-one reigns ever">
+
+  <h2>The dataset</h2>
+  <p>Data comes from Wikipedia's <a href="https://en.wikipedia.org/wiki/List_of_Billboard_Hot_100_number-one_singles_from_1958_to_1969" target="_blank">Hot 100 number-one</a> pages, broken out by era (<a href="https://en.wikipedia.org/wiki/List_of_Billboard_Hot_100_number-one_singles_of_the_1970s" target="_blank">1970s</a>, <a href="https://en.wikipedia.org/wiki/List_of_Billboard_Hot_100_number-one_singles_of_the_1980s" target="_blank">1980s</a>, <a href="https://en.wikipedia.org/wiki/List_of_Billboard_Hot_100_number-one_singles_of_the_1990s" target="_blank">1990s</a>, <a href="https://en.wikipedia.org/wiki/List_of_Billboard_Hot_100_number-one_singles_of_the_2000s" target="_blank">2000s</a>, <a href="https://en.wikipedia.org/wiki/List_of_Billboard_Hot_100_number-one_singles_of_the_2010s" target="_blank">2010s</a>, <a href="https://en.wikipedia.org/wiki/List_of_Billboard_Hot_100_number-one_singles_of_the_2020s" target="_blank">2020s</a>), each sourced back to Billboard's own charts and Joel Whitburn's Billboard chart-history books.</p>
+
+  <h2>The method</h2>
+  <ol>
+    <li>Pulled the full No. 1 table from each of the seven Wikipedia decade pages above (artist, song, date, weeks at No. 1) — 1,201 rows total.</li>
+    <li>Cleaned and combined them into one table, tagging every row with its decade (the 1958–1969 span is grouped as one 12-year bucket to match how Wikipedia itself splits the pre-1970 era).</li>
+    <li>For each decade, computed how many different songs reached No. 1 per year on average (turnover), the mean and median length of a reign, and what share of all reigns fell into four length buckets: 1 week, 2–3 weeks, 4–6 weeks, and 7+ weeks.</li>
+    <li>Cross-checked standout numbers — Boyz II Men's 13-week "End of the Road," Chubby Checker's two separate "The Twist" runs, Mariah Carey's cumulative Christmas total — against independent Billboard and press reporting before trusting them. That check caught a real scraping error: Wikipedia's table briefly gave "The Twist" 11 and 21 weeks for its two runs, a footnote-concatenation artifact. The real, well-documented figures are 1 week (1960) and 2 weeks (1962); the dataset was corrected before analysis.</li>
+  </ol>
+
+  <h2>What it showed</h2>
+  <p><strong>Turnover has roughly halved since the 1970s.</strong> New No. 1 songs per year fell from 25.3 (1970s) and 23.1 (1980s) to just 11.6 in the 2010s, the low point of the whole 68-year run. The 2020s (through September 2026) have ticked back up to 15.0/year — a real reversal, not just noise from a short sample.</p>
+<p><strong>Average reigns got longer, especially 1990s–2010s.</strong> Mean weeks-at-No.-1 climbed from roughly 2.1–2.6 weeks in every decade before 1990 to 3.7 (1990s), 4.0 (2000s), and a peak of 4.5 (2010s). Medians barely moved (2 to 3 weeks) — the mean is being pulled up by a growing number of genuine mega-hits, not by every song running longer.</p>
+<p><strong>The real story is polarization, not just "longer."</strong> Breaking every reign into length buckets shows the share of 7+ week mega-hits rising from 1.6–3.1% in 1958–1989 to 16–27% from 1990 onward. At the same time, the share of one-week flukes — after bottoming out around 24–28% in the 1990s–2000s — jumped back up to 52% in the 2020s, the highest of any decade in the dataset, even higher than the 1970s (49%). The middle ground (2–6 week reigns) is shrinking: today's No. 1 spot is more likely than ever to be either a one-week blip or a months-long takeover, rarely something in between.</p>
+<p><strong>The ten longest reigns in history are mostly recent.</strong> Only three of the top ten predate 2015 (1995, 1996, 1997); five are from 2019 or later.</p>
+<table class="data-table"><tr><th>Song</th><th>Artist</th><th>Year</th><th>Weeks</th></tr><tr><td>Choosin' Texas*</td><td>Ella Langley</td><td>2026</td><td>21 (active)</td></tr><tr><td>Old Town Road</td><td>Lil Nas X</td><td>2019</td><td>19</td></tr><tr><td>A Bar Song (Tipsy)</td><td>Shaboozey</td><td>2024</td><td>19</td></tr><tr><td>Last Night</td><td>Morgan Wallen</td><td>2023</td><td>16</td></tr><tr><td>One Sweet Day</td><td>Mariah Carey &amp; Boyz II Men</td><td>1995</td><td>16</td></tr><tr><td>Despacito</td><td>Luis Fonsi &amp; Daddy Yankee</td><td>2017</td><td>16</td></tr><tr><td>As It Was</td><td>Harry Styles</td><td>2022</td><td>15</td></tr><tr><td>Macarena (Bayside Boys Mix)</td><td>Los Del Río</td><td>1996</td><td>14</td></tr><tr><td>Uptown Funk</td><td>Mark Ronson ft. Bruno Mars</td><td>2015</td><td>14</td></tr><tr><td>Candle in the Wind '97</td><td>Elton John</td><td>1997</td><td>14</td></tr></table>
+  <p>As of this post's research date (September 10, 2026), Ella Langley's "Choosin' Texas" was still actively sitting at No. 1 with 21 weeks logged and climbing — it may pass Mariah Carey's all-time record of 22 weeks before this post is even read. (Small Latin-crossover note, since it's one of Track Record's recurring threads: "Despacito" remains the highest-charting Spanish-language hit in Hot 100 history and earned its top-ten spot here purely on its own chart merits.) Two totals didn't fully reconcile during fact-checking: summing Wikipedia's own year-by-year rows for Mariah Carey's holiday song gives 20 cumulative weeks at No. 1 (2019–2025), while Billboard's own reporting puts it at a record 22 — a small gap likely tied to how a chart week straddling late December and early January gets attributed to a calendar year, shown here rather than quietly corrected.</p>
+
+  <div class="takeaway">
+    <strong>Takeaway:</strong> The Hot 100's No. 1 spot has become a much more polarized place: a fluke one-week visit is more common than ever (52% of 2020s reigns), but so is a genuine months-long takeover, in a way that simply didn't happen before 1990. That's consistent with a streaming- and TikTok-era chart where songs can either spike and vanish in a single viral week or get sustained by repeat plays for months — but this dataset only shows the pattern, not the cause, since streaming-share data wasn't tested directly against these reigns. The 2020s numbers are also still partial (7 of 10 years, plus one chart run that hadn't finished climbing as of publication), so this decade's true shape could still shift. And one total — Mariah Carey's cumulative Christmas weeks — didn't fully reconcile between an independent sum of Wikipedia's own tables and Billboard's published figure, a reminder that even familiar chart trivia gets messy once you verify it row by row.
+  </div>
+
+  <p><a class="btn" href="../index.html">← Back to all posts</a></p>
+</article>
+
+<footer class="site">
+  <div class="wrap">
+    <p style="margin: 0; padding-bottom: 10px;">
+      Track Record is an independent data project by Longo Co. LLC. Full datasets and code for every post are public on <a href="https://github.com/longocollc/track-record" target="_blank">GitHub</a> — check our work.
+    </p>
+    <p style="margin: 0; font-size: 0.9em;">
+      <a href="../privacy.html" style="color: inherit; text-decoration: underline;">Privacy Policy</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
