@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ca7riel &amp; Paco Amoroso's Tiny Desk Went From 3,000 Daily Streams to One of NPR's Most-Watched Videos Ever — Track Record</title>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <div class="brand">
+      <h1>Track<span>Record</span></h1>
+      <nav class="site">
+        <a href="../index.html">Posts</a>
+        <a href="../about.html">About &amp; Methodology</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<article class="post wrap" style="max-width:760px;">
+  <div class="post-header">
+    <span class="badge">Streaming &amp; Charts</span>
+    <h1>Ca7riel &amp; Paco Amoroso's Tiny Desk Went From 3,000 Daily Streams to One of NPR's Most-Watched Videos Ever</h1>
+    <p class="post-meta">Post 07 · Track Record · Dataset: NPR Tiny Desk YouTube view counts across 20 concerts, plus a press-reported Ca7riel &amp; Paco Amoroso growth timeline (2024–2026)</p>
+  </div>
+
+  <p>Before October 2024, Argentine duo Ca7riel &amp; Paco Amoroso weren't cracking 3,000 combined daily U.S. streams. Seventeen minutes behind NPR's desk later, their Tiny Desk Concert has pulled in an estimated 51 million YouTube views — enough to sit ahead of Alicia Keys, Taylor Swift, and Harry Styles among the platform's most-cited Tiny Desks, entirely in Spanish.</p>
+
+  <img class="post-hero-img" src="../assets/post07_ca7riel_tiny_desk.png" alt="Two-panel chart: a ranked bar chart comparing Ca7riel & Paco Amoroso's Tiny Desk views against 19 other landmark Tiny Desk concerts, and a line chart showing the growth of their view count over the 16 months since release">
+
+  <h2>The dataset</h2>
+  <p>Two datasets. The first covers 20 Tiny Desk Concerts (Ca7riel &amp; Paco Amoroso plus 19 others) with a YouTube view count in millions, an "as of" date, whether the artist is a Latin-market act, and the source it came from. It's a curated sample, not a scrape of NPR's full catalog of 1,200+ Tiny Desk videos — built from NPR/press "most-watched" and "most memorable" roundups (a K104.7 top-5 from Nov 2024, a Georgia Tech Polivision feature on Latin American Tiny Desks from Nov 2025, and individual searches for other widely-discussed performances), so it reads as "how Ca7riel &amp; Paco Amoroso compares to other frequently-cited Tiny Desks," not a definitive all-time leaderboard. The second is a timeline of 7 dated milestones tracking Ca7riel &amp; Paco Amoroso's view count specifically, from 5 days after release through the most recent figure found, each tied to the article it came from. Both CSVs and the chart script are in this repo's <code>data/</code> and <code>scripts/</code> folders.</p>
+
+  <h2>The method</h2>
+  <ol>
+    <li>Searched press coverage and NPR-adjacent roundups for individually reported YouTube view counts on 19 well-documented Tiny Desk Concerts, plus Ca7riel &amp; Paco Amoroso's, recording the source and date for each figure rather than a single live scrape (direct access to YouTube's own view counters wasn't available for this pull).</li>
+    <li>Separately, pulled every press-reported view-count milestone for Ca7riel &amp; Paco Amoroso's Tiny Desk specifically, from 5 days after its October 4, 2024 release through the most recent figure found, to trace the shape of its growth rather than just the current total.</li>
+    <li>Computed where Ca7riel &amp; Paco Amoroso ranks within the 20-video comparison sample, what share of that sample is Latin-market artists, and how the average daily view rate in the first 5 days compares to the average across the full span since release.</li>
+    <li>Built a two-panel chart: a ranked bar comparison colored by Ca7riel &amp; Paco Amoroso / other Latin-market artist / other, and a line chart of the growth timeline.</li>
+  </ol>
+
+  <h2>What it showed</h2>
+  <p><strong>Within this sample, Ca7riel &amp; Paco Amoroso ranks 6th of 20.</strong> Their ~51M views sit behind five performances that have had years longer to accumulate views (Dua Lipa, Mac Miller, Anderson .Paak &amp; The Free Nationals, Sting &amp; Shaggy, and BTS), but ahead of Alicia Keys, Natalia Lafourcade, Harry Styles, Taylor Swift, and every other Latin-market act in the sample. Separately, NPR-adjacent coverage pegged the video as the 9th-most-watched Tiny Desk of all time back when it sat at 44M views (November 2025) — a different number than this post's "6th of 20," but that's expected: NPR's claim is against the full 1,200+ video catalog, this post's rank is only within the 20 videos sampled here, and the two figures were measured about three months and 7M views apart. Both point the same direction: a top-10-ever Tiny Desk by most counts.</p>
+  <p><strong>The growth wasn't a smooth curve.</strong> The first five days after release averaged roughly 300,000 views per day — the viral burst, as the video went from a niche Latin-trap release to a cultural moment. Growth then slowed considerably: it took about five more months to go from 11M to 27M, and roughly 24M more has come in the year-plus since, for a full-span average closer to 105,000 views/day. Most of the "virality" was front-loaded; the last year has been a much slower, steadier climb.</p>
+  <p><strong>The Latin-music thread:</strong> 6 of the 20 performances in this comparison — Ca7riel &amp; Paco Amoroso, Natalia Lafourcade, Nicki Nicole, Bad Bunny, Ozuna, and Karol G — are Latin-market artists, a reminder that Tiny Desk's "El Tiny" Latin Heritage Month franchise (which produced this concert) has repeatedly punched above its weight among the platform's most-discussed performances.</p>
+
+  <div class="takeaway">
+    <strong>Takeaway:</strong> This isn't a photo-finish, same-day snapshot comparison — it's built from real, individually dated view counts pulled from press coverage between late 2024 and early 2026, on a 20-video sample rather than NPR's full 1,200+ video catalog, so the exact rank here is illustrative, not official (an act with an older reported figure may well have more views today than shown). What isn't in doubt is the shape of the story: a Spanish-language, five-song set from a duo NPR itself once introduced as playing to a niche South American fanbase now sits comfortably alongside some of the biggest pop and hip-hop names ever to play that desk — proof that on Tiny Desk, language hasn't been the ceiling some might assume it to be.
+  </div>
+
+  <p><a class="btn" href="../index.html">← Back to all posts</a></p>
+</article>
+
+<footer class="site">
+  <div class="wrap">
+    <p style="margin: 0; padding-bottom: 10px;">
+      Track Record is an independent data project by Longo Co. LLC. Full datasets and code for every post are public on <a href="https://github.com/longocollc/track-record" target="_blank">GitHub</a> — check our work.
+    </p>
+    <p style="margin: 0; font-size: 0.9em;">
+      <a href="../privacy.html" style="color: inherit; text-decoration: underline;">Privacy Policy</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
