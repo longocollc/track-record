@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spotify Wrapped's Top Artist Hasn't Had the Top Song in 7 Years Straight — Track Record</title>
+<link rel="stylesheet" href="../styles.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4867861667920174"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <div class="brand">
+      <h1>Track<span>Record</span></h1>
+      <nav class="site">
+        <a href="../index.html">Posts</a>
+        <a href="../about.html">About &amp; Methodology</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<article class="post wrap" style="max-width:760px;">
+  <div class="post-header">
+    <span class="badge">Personal Listening Data</span>
+    <h1>Spotify Wrapped's Top Artist Hasn't Had the Top Song in 7 Years Straight</h1>
+    <p class="post-meta">Post 08 · Track Record · Dataset: Spotify Wrapped global year-end recaps, 2016&ndash;2025 (10 years x Top Artist/Top Song/Top Album), plus Spotify's own quarterly user disclosures</p>
+  </div>
+
+  <p>Since 2019, the artist crowned Spotify's Global Top Artist has never also owned that year's most-streamed song &mdash; Bad Bunny, Taylor Swift, Drake and friends keep winning two completely different contests.</p>
+
+  <img class="post-hero-img" src="../assets/post08_wrapped_crown_split.png" alt="Four-panel chart: top artist streams by year colored by whether the same artist also had the top song, a ranked bar of Wrapped crown wins by artist, the top song's streams by year, and a growth-since-2016 comparison of top artist streams, top song streams, and Spotify's user base">
+
+  <h2>The dataset</h2>
+  <p>Every number here comes from Spotify's own year-end "Wrapped" recaps, published on <a href="https://newsroom.spotify.com" target="_blank">Spotify Newsroom</a> each year and widely covered by outlets like Billboard, Variety, Rolling Stone and Forbes, which I cross-referenced against the original Spotify posts where available. For each of the ten Wrapped cycles run so far (2016 through 2025), I pulled the Global Top Artist and their total streams for the year, and the Global Top Song and its streams for the year &mdash; 10 years times two headline stats, plus the winning song and album title each year, for around 30 individually sourced facts in total. A fourth chart panel adds Spotify's quarterly monthly-active-user (MAU) disclosures from its investor relations filings (compiled by Backlinko from Spotify's own reporting), using the Q4 figure for each year as a stand-in for "users around the time Wrapped was compiled" &mdash; a deliberate simplification, since Wrapped reflects streams accumulated across the whole calendar year, not a single quarter's user count. Two precision caveats: streaming totals reported in press coverage sometimes vary slightly by source and by the exact date a figure was pulled ("God's Plan" has been cited anywhere from 1.1 to 1.67 billion 2018 streams depending on the article; I used the figure most consistently reported as Spotify's own year-end number, 1.5 billion), and "Se&ntilde;orita" (2019) was reported at "over 1 billion" streams for the year without a more precise figure ever published, so that data point is a floor, not an exact count. Both CSVs and the chart script are in this repo's <code>data/</code> and <code>scripts/</code> folders.</p>
+
+  <h2>The method</h2>
+  <ol>
+    <li>Built a table with one row per Wrapped year, recording the Global Top Artist, their total streams that year, the Global Top Song, its artist, and its streams.</li>
+    <li>For each year, compared whether the artist behind the top song matched the artist crowned Global Top Artist, giving a simple yes/no per year used to color-code the headline chart.</li>
+    <li>Tallied how many times each artist has worn the Global Top Artist crown across all ten years, and checked that those counts summed to exactly ten as a sanity check. Bad Bunny's tally of four wins also matches what Spotify itself announced in its 2025 recap, which called him the first artist ever to reach four Global Top Artist titles &mdash; an independent confirmation, not just this post's own count.</li>
+    <li>For the growth panel, indexed three series &mdash; top artist streams, top song streams, and Spotify's Q4 monthly active users &mdash; all to their 2016 starting value, so they could be compared on the same scale despite being wildly different units (billions of streams vs. millions of users).</li>
+  </ol>
+
+  <h2>What it showed</h2>
+  <p><strong>Panel 1 &mdash; the crown split.</strong> In 2016, 2017 and 2018, the Global Top Artist (Drake, then Ed Sheeran, then Drake again) also had the single most-streamed song that year. Starting in 2019, that stopped happening &mdash; and it hasn't happened since. Post Malone was the top artist in 2019, but "Se&ntilde;orita" (Shawn Mendes &amp; Camila Cabello) was the top song. Bad Bunny has won the artist crown four times without ever having the top song in any of those years. Taylor Swift's two artist wins came alongside Miley Cyrus's "Flowers" and Sabrina Carpenter's "Espresso" topping the song chart instead. Seven years running, two different acts have split the titles.</p>
+  <p><strong>Panel 2 &mdash; who's actually won.</strong> Bad Bunny leads with four Global Top Artist titles (2020, 2021, 2022, 2025), ahead of Taylor Swift and Drake with two each, and Ed Sheeran and Post Malone with one apiece. None of the five ever needed the single biggest song of the year to win &mdash; Top Artist is a whole-catalog, whole-year contest, not a hit-single contest.</p>
+  <p><strong>Panel 3 &mdash; the song chart is a calmer, different story.</strong> The top song's streams have moved in a narrower band (roughly 0.95 to 1.7 billion) and don't track the artist chart's trajectory at all &mdash; 2019's "Se&ntilde;orita" (about 1.0 billion) actually streamed less than 2017's "Shape of You" (1.4 billion), two years earlier and with a much smaller global Spotify audience.</p>
+  <p><strong>Panel 4 &mdash; streaming's growth outpaced any one hit, but not the user base.</strong> The Global Top Artist's total streams grew about 4.2x from 2016 to 2025 (4.7 billion to 19.8 billion), while the Global Top Song's streams grew only about 1.8x (0.95 billion to 1.7 billion) over the same stretch. Spotify's own monthly active user base, meanwhile, grew roughly 6.1x in that period (123 million to 751 million Q4 users, per Spotify's investor disclosures) &mdash; actually outpacing growth in the top artist's total streams. The platform grew faster than even its biggest annual winner's total plays, while any single song's ceiling barely moved &mdash; a sign that listening has spread wider across more songs and artists even as the overall pie got much bigger.</p>
+
+  <div class="takeaway">
+    <strong>Takeaway:</strong> The "Top Artist" and "Top Song" titles measure genuinely different things &mdash; one rewards a deep catalog getting steady plays all year, the other rewards a single track's viral peak &mdash; and for seven Wrapped cycles running, no one has managed to win both. That's a real, checkable pattern in Spotify's own numbers, not a coincidence dressed up as one, though it's worth remembering this is only ten data points (one per year since Wrapped began), Spotify's reporting precision has shifted over the years, and "top song" streams in particular came from press coverage rather than a single authoritative table &mdash; so treat the exact figures as directionally solid rather than decimal-perfect, especially for the older years.
+  </div>
+
+  <p><a class="btn" href="../index.html">← Back to all posts</a></p>
+</article>
+
+<footer class="site">
+  <div class="wrap">
+    <p style="margin: 0; padding-bottom: 10px;">
+      Track Record is an independent data project by Longo Co. LLC. Full datasets and code for every post are public on <a href="https://github.com/longocollc/track-record" target="_blank">GitHub</a> — check our work.
+    </p>
+    <p style="margin: 0; font-size: 0.9em;">
+      <a href="../privacy.html" style="color: inherit; text-decoration: underline;">Privacy Policy</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
