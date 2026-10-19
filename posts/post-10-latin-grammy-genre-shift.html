@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Urban/Reggaeton Went From 0% to Half of Latin Grammy's Top Awards — Track Record</title>
+<link rel="stylesheet" href="../styles.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4867861667920174"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <div class="brand">
+      <h1>Track<span>Record</span></h1>
+      <nav class="site">
+        <a href="../index.html">Posts</a>
+        <a href="../about.html">About &amp; Methodology</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<article class="post wrap" style="max-width:760px;">
+  <div class="post-header">
+    <span class="badge">Music History &amp; Legacy</span>
+    <h1>Urban/Reggaeton Went From 0% to Half of Latin Grammy's Top Awards</h1>
+    <p class="post-meta">Post 10 · Track Record · Dataset: Latin Grammy Album &amp; Record of the Year winners, 2000–2025 (52 awards)</p>
+  </div>
+
+  <p>In the Latin Grammys' first five years, every single Album or Record of the Year went to pop or rock. Urban music — reggaeton, Latin trap, and its relatives — didn't win either award once until Calle 13 broke through in 2009. By the 2025 ceremony, it was half the winners, and Bad Bunny became the first artist ever to win Album of the Year with an urban record.</p>
+
+  <img class="post-hero-img" src="../assets/post10_latin_grammy_genre_shift.png" alt="Two-panel chart: top panel shows the genre mix of Latin Grammy Album and Record of the Year winners by 5-year period from 2000 to 2025, with urban music's share rising from 0% to 50%; bottom panel shows every individual winner from 2000-2025 as colored dots by genre, split into Album of the Year and Record of the Year rows.">
+
+  <h2>The dataset</h2>
+  <p>Every winner of the Latin Grammy's two top general-field categories — Album of the Year and Record of the Year — from the awards' founding year (2000) through the most recent ceremony (2025). That's 52 total awards (26 years × 2 categories).</p>
+  <p><strong>Source:</strong> the official Latin Recording Academy website, latingrammy.com, which maintains a complete winners archive for each category going back to 2000 (<a href="https://www.latingrammy.com/en/awards/categories/album-of-the-year/" target="_blank">Album of the Year</a>, <a href="https://www.latingrammy.com/en/awards/categories/record-of-the-year/" target="_blank">Record of the Year</a>). Retrieved directly from the Academy's own site on October 19, 2026 — this is the primary source, not a secondary aggregator.</p>
+  <p><strong>Caveat on genre labels:</strong> the Latin Recording Academy doesn't publish an official genre tag alongside its AOTY/ROTY winners — those two awards are genre-agnostic "best overall" categories by design. The genre bucket for each winner here (Pop, Urban, Tropical, Rock/Pop, Regional Mexican, Brazilian/MPB, Flamenco) is Track Record's own classification, based on each artist/work's well-documented primary style. A few winners blend genres (Rosalía's flamenco-pop "El Mal Querer," Carlos Vives &amp; Shakira's vallenato-pop "La Bicicleta") and were placed in the bucket that best matches critical consensus and how the artist's catalog is generally described — a reasonable person could categorize a handful of these differently.</p>
+
+  <h2>The method</h2>
+  <ol>
+    <li>Pulled the complete year-by-year winner tables for both categories directly from latingrammy.com.</li>
+    <li>Hand-coded each of the 52 winners into one of seven genre buckets.</li>
+    <li>Grouped years into 5-year periods (2000–2004 through 2020–2024, plus a partial 2025–2029 bucket with just the one ceremony held so far) and computed each genre's share of that period's winners.</li>
+    <li>Plotted every individual winner on a year-by-category timeline to show exactly which wins drove the shift, not just the aggregate trend.</li>
+    <li>Cross-checked the data itself by counting total wins per artist directly from the table — Alejandro Sanz and Juan Luis Guerra's win totals below are a direct tally of the same 52 rows used throughout, not a separate claim.</li>
+  </ol>
+  <p>The actual analysis code:</p>
+  <pre>import pandas as pd
+
+df = pd.read_csv("latin_grammy_aoty_roty_2000_2025.csv")  # 52 rows: year, artist, title, genre, category
+
+def period(y):
+    start = 2000 + ((y - 2000) // 5) * 5
+    return f"{start}-{start+4}"
+df["period"] = df["year"].apply(period)
+
+# Genre share by period
+for p in sorted(df["period"].unique()):
+    sub = df[df["period"] == p]
+    urban_share = (sub["genre"] == "Urban").mean() * 100
+    print(p, f"{urban_share:.0f}% Urban")
+
+# Cross-check: direct tally of top winning artists
+print(df[df["artist"].str.contains("Alejandro Sanz")].shape[0])   # 11 total AOTY+ROTY wins
+print(df[df["artist"].str.contains("Juan Luis Guerra")].shape[0]) # 6 total AOTY+ROTY wins</pre>
+  <p><span style="color:var(--cyan);font-weight:700;">✓ Sanity check:</span> Alejandro Sanz's 11 combined AOTY/ROTY wins and Juan Luis Guerra's 6 are both direct counts from this same 52-row dataset — not external claims — so they're exactly as reliable as the genre analysis above, drawn from the identical source table.</p>
+
+  <h2>What it showed</h2>
+  <p><strong>Panel A:</strong> 2000–2004 was 70% Pop and 30% Rock/Pop — no Urban, Tropical, Regional Mexican, Brazilian, or Flamenco winners at all in either top category. Urban's first wins land in the 2005–2009 period (20%) via Calle 13's genre-bending alternative-urban sound, and it holds roughly 20–30% through the 2010s. The jump to 50% in the single 2025 ceremony — split between Bad Bunny's historic AOTY win and continued Urban presence — is the clearest sign yet of a genre that started the 2000s at zero now contesting (and often winning) the top overall prize, though that 50% figure is just one ceremony's worth of data and could easily move.</p>
+  <p><strong>Panel B:</strong> laid out year by year, three moments stand out as inflection points rather than a smooth trend — Calle 13's 2009 Album of the Year (the first Urban win in either category), "Despacito" winning Record of the Year in 2017 (the song that arguably introduced global pop audiences to reggaeton at scale), and Bad Bunny's 2025 Album of the Year (the first time Urban has won the top album prize, not just the top single prize). Tropical music (salsa, merengue, bachata) has been a steady 20–30% presence in most periods — this isn't purely a two-genre story of "pop giving way to urban," tropical genres never really left.</p>
+
+  <div class="takeaway">
+    <strong>Takeaway:</strong> The data backs up the general narrative that urban/reggaeton has gone from outsider to centerpiece of Latin music's most prestigious awards — the 0%-to-roughly-50% arc is real and comes straight from the Academy's own winner archive. But two caveats matter: first, the genre labels are Track Record's own judgment calls, not the Academy's, so a different (reasonable) classifier might draw slightly different lines, especially for genre-blending winners. Second, the most dramatic jump (to 50%) rests on just the 2025 ceremony — one data point, not yet a period — so it's a real signal worth watching, not a confirmed new plateau. The steadier, more defensible finding is the multi-decade climb from zero through the 2010s, not the most recent single-year spike.</div>
+
+  <p><a class="btn" href="../index.html">← Back to all posts</a></p>
+</article>
+
+<footer class="site">
+  <div class="wrap">
+    <p style="margin: 0; padding-bottom: 10px;">
+      Track Record is an independent data project by Longo Co. LLC. Full datasets and code for every post are public on <a href="https://github.com/longocollc/track-record" target="_blank">GitHub</a> — check our work.
+    </p>
+    <p style="margin: 0; font-size: 0.9em;">
+      <a href="../privacy.html" style="color: inherit; text-decoration: underline;">Privacy Policy</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

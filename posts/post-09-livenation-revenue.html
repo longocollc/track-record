@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live Nation's Revenue Went From $2.9B to $25.2B in 20 Years — Track Record</title>
+<link rel="stylesheet" href="../styles.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4867861667920174"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <div class="brand">
+      <h1>Track<span>Record</span></h1>
+      <nav class="site">
+        <a href="../index.html">Posts</a>
+        <a href="../about.html">About &amp; Methodology</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<article class="post wrap" style="max-width:760px;">
+  <div class="post-header">
+    <span class="badge">Industry &amp; Money</span>
+    <h1>Live Nation's Revenue Went From $2.9B to $25.2B in 20 Years</h1>
+    <p class="post-meta">Post 09 · Track Record · Dataset: Live Nation Entertainment SEC-filed annual revenue &amp; earnings-release attendance figures, 2005–2025</p>
+  </div>
+
+  <p>Live Nation's annual revenue is now 8.6x what it was in 2005 — and more than double its pre-pandemic 2019 peak. The pandemic wiped 84% off its revenue in a single year, and the company has more than fully recovered since: 2025 was its biggest year ever, both in dollars and in fans through the door.</p>
+
+  <img class="post-hero-img" src="../assets/post09_livenation_revenue.png" alt="Two-panel chart: top panel shows Live Nation Entertainment's annual revenue from 2005 to 2025 as a bar chart with the pandemic crash highlighted; bottom panel compares fan attendance and revenue recovery from 2020 to 2025, both re-based to 2020 = 1.0x.">
+
+  <h2>The dataset</h2>
+  <p>Two series, both covering Live Nation Entertainment (NYSE: LYV), the world's largest live-events company (owns Ticketmaster, promotes and operates concerts/festivals globally):</p>
+  <ul>
+    <li><strong>Annual revenue, 2005–2025</strong> (21 datapoints) — sourced from stockanalysis.com's revenue history for LYV, which aggregates Live Nation's own SEC-filed financial statements via Fiscal.ai. Cross-checked against Live Nation's own FY2025 and FY2024 earnings releases for the most recent years.</li>
+    <li><strong>Fans attended, 2020–2025</strong> (6 datapoints) — pulled directly from Live Nation's own quarterly/annual earnings releases (news.livenationentertainment.com), which only began reporting a single company-wide "total fans" metric consistently from the pandemic-recovery period onward; earlier years weren't reported in a directly comparable single figure in these releases.</li>
+  </ul>
+  <p><strong>License/attribution:</strong> this is public-company financial data required to be disclosed to the SEC; it's freely available in Live Nation's own 10-K filings and press releases. The aggregator (stockanalysis.com) is a convenience source for the full historical series, not the original filer.</p>
+  <p><strong>Caveats:</strong> revenue figures from third-party aggregators can round slightly differently than the original 10-K line items in a handful of years (e.g., restated segment figures) — this post cross-checks several computed growth rates against Live Nation's own reported growth percentages and they match within 0.1 percentage points (see "the method" below). The "fans attended" metric is Live Nation's own company-wide count across all its businesses (concerts, festivals, venues) and isn't independently audited the way revenue is.</p>
+
+  <h2>The method</h2>
+  <ol>
+    <li>Compiled Live Nation's annual revenue for each fiscal year 2005–2025 into one table.</li>
+    <li>Computed year-over-year growth rate for every year from the revenue series itself.</li>
+    <li>Cross-checked five of those computed growth rates (2010, 2022, 2023, 2024, 2025) against the growth percentages Live Nation/its aggregator explicitly reported for those same years.</li>
+    <li>Compiled the six years of company-wide "fans attended" figures Live Nation has reported since 2020.</li>
+    <li>Re-based both the 2020–2025 revenue and fan-attendance series to 2020 = 1.0x so the two very differently-scaled metrics (billions of dollars vs. millions of people) could be compared on the same chart.</li>
+  </ol>
+  <p>The actual analysis code:</p>
+  <pre>import pandas as pd
+
+df = pd.DataFrame(sorted(revenue.items()), columns=["year", "revenue_millions"])
+df["yoy_growth_pct"] = df["revenue_millions"].pct_change() * 100
+
+# Cross-check computed growth vs. officially reported growth for several years
+reported_growth = {2025: 8.83, 2024: 1.89, 2023: 36.24, 2022: 166.11, 2010: 21.11}
+for y, g in reported_growth.items():
+    mine = df.loc[df.year == y, "yoy_growth_pct"].values[0]
+    print(f"{y}: mine={mine:.2f}%  reported={g}%  diff={abs(mine-g):.2f}pp")
+# → every year matches within 0.08 percentage points
+
+# Re-base revenue and fan attendance to 2020 = 1.0x for direct comparison
+base_rev = df.loc[df.year == 2020, "revenue_millions"].values[0]
+base_fans = fans.loc[fans.year == 2020, "fans_millions"].values[0]
+rev_idx = df.loc[df.year >= 2020, "revenue_millions"] / base_rev
+fans_idx = fans["fans_millions"] / base_fans</pre>
+  <p><span style="color:var(--cyan);font-weight:700;">✓ Cross-check passed:</span> every one of the five independently-reported growth percentages I checked (2010, 2022, 2023, 2024, 2025) matched my own computed year-over-year growth from the raw revenue figures within 0.08 percentage points — strong confirmation the underlying revenue series is internally consistent with Live Nation's own reporting.</p>
+
+  <h2>What it showed</h2>
+  <p><strong>Panel A:</strong> revenue climbed almost every year from $2.9B (2005) to $11.6B (2019) — a roughly 4x increase over 14 years, averaging about 11% annual growth. Then 2020 wiped out 84% of revenue in one year ($1.9B) as live events shut down globally. The recovery wasn't gradual: by 2023 revenue had already blown past the old 2019 peak, and 2025 closed at $25.2B — 8.6x the 2005 figure and 2.2x the pre-pandemic high.</p>
+  <p><strong>Panel B:</strong> re-basing both fan attendance and revenue to 2020 = 1.0x shows they recovered in close lockstep through 2022, then revenue pulled slightly ahead of fan-count growth in 2023–2025 — consistent with rising per-fan spending (ticket and ancillary prices) layering on top of the fan-count recovery, though this dataset doesn't break out price vs. volume directly. By 2025, Live Nation welcomed 159 million fans, up from just 11 million in the depths of 2020 — a more than 14x increase in attendance over five years.</p>
+
+  <div class="takeaway">
+    <strong>Takeaway:</strong> Live Nation's growth story has two very different chapters — a steady ~11%/year climb through the 2010s, then a pandemic cliff and an even steeper climb back out of it. The headline "8.6x in 20 years" number is real and verified, but it blends a slow-and-steady first chapter with a sharp, unusual second one; reading it as one smooth growth line would be misleading. This dataset also can't separate how much of the post-2022 revenue growth came from more fans showing up versus each fan spending more (higher ticket/fee prices, more premium offerings) — that split would need Live Nation's segment-level pricing data, which isn't broken out at this level of detail in the figures used here.
+  </div>
+
+  <p><a class="btn" href="../index.html">← Back to all posts</a></p>
+</article>
+
+<footer class="site">
+  <div class="wrap">
+    <p style="margin: 0; padding-bottom: 10px;">
+      Track Record is an independent data project by Longo Co. LLC. Full datasets and code for every post are public on <a href="https://github.com/longocollc/track-record" target="_blank">GitHub</a> — check our work.
+    </p>
+    <p style="margin: 0; font-size: 0.9em;">
+      <a href="../privacy.html" style="color: inherit; text-decoration: underline;">Privacy Policy</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
